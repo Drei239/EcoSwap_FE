@@ -11,6 +11,7 @@ function App() {
     <BrowserRouter>
     <AuthProvider>
       <Routes>
+     <Route path="/" element={<HomePage />} />
      <Route path="/signup" element={<Signup/>}/>
      <Route path="/user-info" element={<UserInfo/>}/>
      <Route path="/signin" element={<Signin />} />

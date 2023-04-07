@@ -6,9 +6,21 @@ import NavBar from "../Components/NavBar";
 import EndBar from "../Components/EndBar";
 import EventCard from "../Components/EventCard";
 import ProductCard from "../Components/ProductCard";
+import axios from "axios";
 
 export default function HomePage() {
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        // Fetch API = Axios
+        axios.get('http://localhost:3000/items/all').then(({ data }) => {
+            console.log(data);
+            setProducts(data);
+        });
+    }, []);
+
     return (
-        <NavBar/>
+        <NavBar />
     );
 }
