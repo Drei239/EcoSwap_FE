@@ -1,4 +1,4 @@
-import { Drawer, Menu, Layout, Row, Col,Input, Space, Image } from "antd";
+import { Drawer, Menu, Layout, Row, Col, Input, Space, Image } from "antd";
 import {
     LoginOutlined, QuestionCircleOutlined, HomeOutlined,
     SwapOutlined, MenuOutlined, PlusCircleOutlined
@@ -36,7 +36,7 @@ export default function NavBar() {
 function AppMenu({ isInline = false }) {
     const onSearch = (value) => console.log(value);
     return (
-        
+
         <Menu className="Navbar-Menu"
             style={{ fontSize: 24 }}
             mode={isInline ? "inline" : "horizontal"}
@@ -46,8 +46,8 @@ function AppMenu({ isInline = false }) {
                         width={200}
                         height={30}
                         src={logoBlack}
-                      />),
-                      key: "Logo"
+                    />),
+                    key: "Logo"
                 },
                 {
                     label: "Home",
@@ -69,12 +69,18 @@ function AppMenu({ isInline = false }) {
                     key: "Seach"
                 },
                 {
-                    label: "Login",
+                    label: (
+                        <a href="/signin" rel="noopener noreferrer">
+                            Login
+                        </a>
+                    ),
                     key: "Login",
                     icon: <LoginOutlined />
                 },
                 {
-                    label: "Register",
+                    label: (<a href="/signup" rel="noopener noreferrer">
+                        Register
+                    </a>),
                     key: "Register",
                     icon: <PlusCircleOutlined />
                 }

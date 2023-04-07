@@ -66,13 +66,14 @@ export default function UserInfo() {
       await axios
         .post("http://localhost:3000/users/register", data)
         .then(function (response) {
-            if(response.status>290){
-              openNotification();
-            }else {console.log(3)
-              localStorage.setItem("data", JSON.stringify(newProfile));
-              alert("đăng ký thành công");
-              navigate("/home");
-            }
+          if (response.status > 290) {
+            openNotification();
+          } else {
+            console.log(3)
+            localStorage.setItem("data", JSON.stringify(newProfile));
+            alert("đăng ký thành công");
+            navigate("/home");
+          }
         })
         .catch(function (error) {
           console.log(error);
