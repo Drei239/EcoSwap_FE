@@ -20,10 +20,10 @@ const ProductCard = ({ imageList, owner, itemName, description }) => {
         // }).then((userData) => {
         //     setUserData(userData[0]);
         // })
-        axios.get('http://localhost:3000/users/all').then(({ data }) => {
-            console.log(data);
-            setUsers(data);
-        });
+        // axios.get('http://localhost:3000/users/all').then(({ data }) => {
+        //     console.log(data);
+        //     setUsers(data);
+        // });
     }, []);
 
     const showModal = () => {

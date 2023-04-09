@@ -66,6 +66,7 @@ const Signin = () => {
       .post("http://localhost:3000/users/login", user)
       .then((response) => {
         setProfileData(response.data);
+        localStorage.setItem("data", JSON.stringify(response.data));
         navigate("/home")
       })
       .catch((error) => {
@@ -79,7 +80,6 @@ const Signin = () => {
   const onFinish = (values) => {
     const { email, password } = values;
     handleEmailLogin(email, password);
-    values.preventDefault();
   };
 
   return (

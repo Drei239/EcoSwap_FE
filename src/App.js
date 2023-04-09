@@ -6,10 +6,11 @@ import UserInfo from "./Pages/UserInfo";
 import Signin from "./Pages/Signin";
 import HomePage from "./Pages/HomePage";
 import AppProvider from "./Context/AppProvider";
+import Profile from "./Pages/Profile";
 
 function App() {
   return (
-    <>
+    
       <BrowserRouter>
         <AppProvider>
           <AuthProvider>
@@ -19,11 +20,12 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/user-info" element={<UserInfo />} />
               <Route path="/signin" element={<Signin />} />
+              <Route path="/profile/:uid" element={<Profile/>} />
             </Routes>
           </AuthProvider>
         </AppProvider>
       </BrowserRouter>
-    </>
+    
   );
 }
 
