@@ -32,7 +32,7 @@ export default function ProfileCard(props) {
           <Typography.Title
             style={{ display: "block", marginBottom: 0, marginTop: "1rem" }}
           >
-            {profileData?.firstName + " " + profileData?.lastName}
+            {profileData?.name}
           </Typography.Title>
           <Typography.Title
             style={{ display: "flex", marginTop: 0, justifyContent: 'center', alignItems: 'center' }}

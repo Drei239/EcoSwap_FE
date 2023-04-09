@@ -77,8 +77,8 @@ export default function ProfileMenu(props) {
   useEffect(() => {
     axios.get(`http://localhost:3000/items/user/${uid}`).then((data) => {
       console.log("trung", data);
-      if (data.data.data != null) {
-        setItemList(data.data.data);
+      if (data.data != null) {
+        setItemList(data.data);
       }
     });
   }, [profileData]);
