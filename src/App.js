@@ -8,6 +8,7 @@ import Signin from './Pages/Signin';
 
 function App() {
   return (
+    <>
     <BrowserRouter>
     <AuthProvider>
       <Routes>
@@ -17,6 +18,7 @@ function App() {
      </Routes>
      </AuthProvider>
     </BrowserRouter>
+    </>
   );
 }
 

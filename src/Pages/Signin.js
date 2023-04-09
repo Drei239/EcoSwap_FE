@@ -56,28 +56,30 @@ const Signin = () => {
   };
   const { setUser, setProfileData, user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const handleEmailLogin = async (email, password) => {
-    setUser(null);
+
+  const handleEmailLogin =  (email, password) => {
     setUser({
       email: email,
       password: password,
     });
-    axios
+     axios
       .post("http://localhost:3000/users/login", user)
       .then((response) => {
-        console.log(response)
-        setProfileData(user);
+        setProfileData(response.data);
         navigate("/home")
       })
       .catch((error) => {
         console.log(error);
-      });
+        console.log("trung nek")
       openNotification();
+      });
+      
   };
 
   const onFinish = (values) => {
     const { email, password } = values;
     handleEmailLogin(email, password);
+    values.preventDefault();
   };
 
   return (
