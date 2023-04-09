@@ -7,6 +7,7 @@ import Signin from "./Pages/Signin";
 import HomePage from "./Pages/HomePage";
 import AppProvider from "./Context/AppProvider";
 import Profile from "./Pages/Profile";
+import AddModal from "./Components/AddModal";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/user-info" element={<UserInfo />} />
               <Route path="/signin" element={<Signin />} />
               <Route path="/profile/:uid" element={<Profile/>} />
+
             </Routes>
           </AuthProvider>
         </AppProvider>

@@ -2,12 +2,8 @@ import React, { useContext, useState } from "react";
 import { Modal, Form, Input, Typography, Button, Upload, notification, Select } from "antd";
 import { AppContext } from "../Context/AppProvider";
 import styled from "styled-components";
-import InputImage from "../asset/InputImage.png";
+import InputImage from "../Asset/InputImage.png";
 import ImgCrop from "antd-img-crop";
-import { addDocument } from "../Firebase/services";
-import { getImageURL } from "../Firebase/getImageURL";
-// import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-// import { storage } from "../Firebase/config";
 
 
 const ModalStyled = styled(Modal)`
@@ -34,26 +30,28 @@ export default function AddModal() {
       message: 'Item is added successfully !'
     })
   }
-  const currentUserUid = JSON.parse(localStorage.getItem('data'))?.uid;
+  const currentUserUid = JSON.parse(localStorage.getItem('data'))?._id;
   const { addModalVisible, setAddModalVisible } = useContext(AppContext);
   const [fileList, setFileList] = useState([]);
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
+    console.log("fil",fileList)
   };
+  console.log("tuun")
   const onFinish = (values) => {
     setAddModalVisible(false);
-    const imageURL = getImageURL(fileList);
-    openNotification()
-    imageURL.then((data) => {
-      addDocument('items', {
-        ...values,
-        imageList: data,
-        itemOwner: currentUserUid
-      }).then(()=>{
-        window.location.reload(false);
-      })
+    // const imageURL = getImageURL(fileList);
+    // openNotification()
+    // imageURL.then((data) => {
+    //   addDocument('items', {
+    //     ...values,
+    //     imageList: data,
+    //     itemOwner: currentUserUid
+    //   }).then(()=>{
+    //     window.location.reload(false);
+    //   })
       
-    })
+    // })
   }
   return (
     <ModalStyled
@@ -208,7 +206,7 @@ export default function AddModal() {
             />
           </Form.Item>
           <Form.Item>
-            <Button htmlType="submit">Submit</Button>
+            <Button htmlType="submit">Đăng</Button>
           </Form.Item>
         </Form>
       </div>

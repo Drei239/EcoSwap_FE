@@ -6,6 +6,7 @@ import ItemAddButton from "../Asset/ItemAddButton.png";
 import { AppContext } from "../Context/AppProvider";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import AddModal from "./AddModal";
 
 const items = [
   {
@@ -53,22 +54,18 @@ const MenuStyled = styled(Menu)`
   }
 `;
 
-// const CardStyled = styled(Card)`
-//   width: 250px;
-//   margin: 1rem 1rem 1rem 4rem;
-//   border-radius: 24px;
-// `;
 
 export default function ProfileMenu(props) {
   const { profileData, isGuest } = props;
   const { uid } = useParams();
   const [page, setPage] = useState("1");
   const [itemList, setItemList] = useState([]);
-  const { setAddModalVisible, setEventModalVisible, setProfileData } =
+  const { addModalVisible,setAddModalVisible, setEventModalVisible, setProfileData } =
     useContext(AppContext);
   const isAdmin = JSON.parse(localStorage.getItem("data")).isAdmin;
   const handleAdd = () => {
     setAddModalVisible(true);
+    console.log(addModalVisible)
   };
   const handleChange = (e) => {
     setPage(e.key);
@@ -76,7 +73,6 @@ export default function ProfileMenu(props) {
 
   useEffect(() => {
     axios.get(`http://localhost:3000/items/user/${uid}`).then((data) => {
-      console.log("trung", data);
       if (data.data != null) {
         setItemList(data.data);
       }
@@ -84,6 +80,7 @@ export default function ProfileMenu(props) {
   }, [profileData]);
   return (
     <div>
+      <AddModal/>
       <MenuStyled
         items={items}
         mode="horizontal"
