@@ -141,7 +141,7 @@ export default function Signup() {
                     float: "right",
                     backgroundColor: "#10393B",
                   }}
-                  onClick={() => {}}
+                  onClick={() => { }}
                 >
                   <Typography.Text
                     style={{
