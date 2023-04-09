@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import {
     Layout, Typography, FloatButton,
     Image, Pagination, Button,
-    Skeleton, Card, Carousel
+    Skeleton, Card
 } from "antd";
 import axios from "axios";
 import NavBar from "../Components/NavBar";
@@ -11,7 +11,6 @@ import { AppContext } from "../Context/AppProvider";
 import EndBar from "../Components/EndBar";
 import EventCard from "../Components/EventCard";
 import ProductCard from "../Components/ProductCard";
-import { BrowserRouter, Router } from "react-router-dom";
 
 export default function HomePage() {
 
@@ -34,7 +33,7 @@ export default function HomePage() {
         });
     }, []);
 
-    const { width, commonBreakPoint, loading, setLoading } = useContext(AppContext);
+    let { width, commonBreakPoint, loading, setLoading } = useContext(AppContext);
     const numEachPage = 4;
     const numItemsEachPage = 8;
     const windowWidth = width;
