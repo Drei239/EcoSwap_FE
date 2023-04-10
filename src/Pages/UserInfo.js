@@ -63,18 +63,15 @@ export default function UserInfo() {
         phoneNumber: newProfile.phoneNumber,
         address: newProfile.address,
       };
-      console.log(user);
       await axios
         .post("http://localhost:3000/users/register", data)
         .then(function (response) {
 
           localStorage.setItem("data", JSON.stringify(response.data));
           alert("đăng ký thành công");
-          console.log(localStorage.getItem("data"));
           navigate("/home");
         })
         .catch(function (error) {
-          console.log(error);
           openNotification();
         });
 

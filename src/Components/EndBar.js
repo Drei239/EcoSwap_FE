@@ -45,13 +45,11 @@ export default function EndBar(props) {
               marginTop: "10px",
             }}
           >
-            Pham Tri Nhan (Team Lead)
-            <br />
-            Vo Van Luan (Developer)
-            <br />
             Nguyen Kieu Bao Khanh (Developer)
             <br />
-            Le Ba Tan (UI/UX Designer)
+            Truong Quoc Trung (Developer)
+            <br />
+            Dang Khanh Toan(Developer)
           </Typography.Paragraph>
         </div>
         <div style={{
@@ -69,7 +67,7 @@ export default function EndBar(props) {
             Contact us
           </Typography.Title>
           <div>
-            <Typography.Text
+            {/* <Typography.Text
               italic
               style={{
                 color: color === "white" ? "black" : "white",
@@ -82,8 +80,8 @@ export default function EndBar(props) {
                 fontSize: "15px",
                 padding: "2px"
               }} />
-              trinhanpham2801@gmail.com - (Pham Tri Nhan)
-            </Typography.Text>
+              gmail 3 người
+            </Typography.Text> */}
           </div>
           <div>
             <Typography.Text
@@ -99,7 +97,19 @@ export default function EndBar(props) {
                 fontSize: "15px",
                 padding: "5px"
               }} />
-              <a href="https://www.facebook.com/nhan.phamtri2801"> Pham Tri Nhan </a>
+              <a href="https://www.facebook.com/FramepireDev"> Nguyen Kieu Bao Khanh (Developer) </a><br></br>
+              <FacebookOutlined style={{
+                color: color === "white" ? "black" : "white",
+                fontSize: "15px",
+                padding: "5px"
+              }} />
+              <a href="https://www.facebook.com/mi.ka.7186896"> Truong Quoc Trung (Developer) </a><br/>
+              <FacebookOutlined style={{
+                color: color === "white" ? "black" : "white",
+                fontSize: "15px",
+                padding: "5px"
+              }} />
+              <a href="https://www.facebook.com/profile.php?id=100014840496416"> Dang Khanh Toan(Developer) </a>
             </Typography.Text>
           </div>
           <div>

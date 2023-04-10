@@ -65,7 +65,6 @@ export default function ProfileMenu(props) {
   const isAdmin = JSON.parse(localStorage.getItem("data")).isAdmin;
   const handleAdd = () => {
     setAddModalVisible(true);
-    console.log(addModalVisible)
   };
   const handleChange = (e) => {
     setPage(e.key);
@@ -73,7 +72,7 @@ export default function ProfileMenu(props) {
 
   useEffect(() => {
     const id = JSON.parse(localStorage.getItem('data'));
-    axios.get(`http://localhost:3000/items/user/${uid}`, { headers: { "Authorization": `Bearer ${id.token}` } }).then((data) => {
+    axios.get(`http://localhost:3000/items/user/${uid}`,{ headers: {"Authorization" : `Bearer ${id.token}`} }).then((data) => {
       if (data.data != null) {
         setItemList(data.data);
       }
@@ -107,7 +106,6 @@ export default function ProfileMenu(props) {
             ""
           )}
           {itemList.map((i) => {
-            console.log("item:", i);
             return <ImageStyled key={i.uuid} src={i.imageList[0]} alt="item" />;
           })}
         </Space>

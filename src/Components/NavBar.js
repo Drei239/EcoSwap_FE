@@ -58,50 +58,40 @@ const TextStyled = styled.div`
 `;
 
 export default function NavBar() {
-  const [message, setMessage] = useState([]);
-  useEffect(() => {
-    const id = JSON.parse(localStorage.getItem('data'));
-    axios.get("http://localhost:3000/request/receive",
-      { headers: { "Authorization": `Bearer ${id.token}` } }).
-      then((data) => {
-        setMessage(data.data);
-      }).catch(function (error) {
-        console.log(error);
-      });
-  }, []);
-
-  const profileData = JSON.parse(localStorage.getItem('data'));
-  console.log("sau khi dk", profileData)
-  const navigate = useNavigate();
-  const { width, commonBreakPoint, betweenPagesNav } = useContext(AppContext);
-  const windowWidth = width;
-  // const handleSignOut = async (auth) => {
-  // //   const logOut = await signOut(auth);
-  // //   try {
-  // //     console.log(logOut);
-  // //     navigate("/");
-  // //   } catch (error) {
-  // //     console.log(error);
-  // //   }
-  // };
-  return (
-    <StickyContainer>
-      <Sticky>
-        {({
-          style,
-        }) => (
-          <header style={style}>
-            {/* ... */}
-          </header>
-        )}
-      </Sticky>
-      <Header
-        style={{
-          margin: 0,
-          padding: 0,
-        }}
-      >
-        <Row
+    const [message, setMessage] = useState([]);
+    useEffect(()=>{
+        const id = JSON.parse(localStorage.getItem('data'));
+       axios.get("http://localhost:3000/request/receive/",{ headers: {"Authorization" : `Bearer ${id.token}`} }).then((data) => {
+            setMessage(data);
+          }).catch(function (error) {
+            console.log(error);
+          });
+    }, []);
+    const profileData = JSON.parse(localStorage.getItem('data'));
+    const navigate = useNavigate();
+    const { width, commonBreakPoint, betweenPagesNav } = useContext(AppContext);
+    const windowWidth = width;
+    // const handleSignOut = async (auth) => {
+    // //   const logOut = await signOut(auth);
+    // //   try {
+    // //     console.log(logOut);
+    // //     navigate("/");
+    // //   } catch (error) {
+    // //     console.log(error);
+    // //   }
+    // };
+    return (
+      <StickyContainer>
+        <Sticky>
+          {({
+            style,
+          }) => (
+            <header style={style}>
+              {/* ... */}
+            </header>
+          )}
+        </Sticky>
+        <Header
           style={{
             backgroundColor: "#10393B",
           }}

@@ -18,9 +18,7 @@ export default function Profile() {
     const id = JSON.parse(localStorage.getItem('data'));
     axios.get(`http://localhost:3000/users/profile`, { headers: { "Authorization": `Bearer ${id.token}` } }).then(function (response) {
       setProfileData(response.data);
-
-      setIsGuest(uid !== JSON.parse(localStorage.getItem('data'))._id);
-      console.log(isGuest);
+      setIsGuest(uid!==JSON.parse(localStorage.getItem('data'))._id);
     })
       .catch(function (error) {
         console.log(error);
