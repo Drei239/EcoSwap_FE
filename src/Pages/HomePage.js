@@ -18,7 +18,6 @@ export default function HomePage() {
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
-        console.log(localStorage.data);
         axios.get('http://localhost:3000/items/all').then(({ data }) => {
         
             setProducts(data);

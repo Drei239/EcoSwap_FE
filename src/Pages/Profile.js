@@ -19,7 +19,6 @@ export default function Profile() {
       setProfileData(response.data);
 
       setIsGuest(uid!==JSON.parse(localStorage.getItem('data'))._id);
-      console.log(isGuest);
     })
     .catch(function (error) {
       console.log(error);

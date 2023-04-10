@@ -11,9 +11,7 @@ const WrapperStyled = styled.div`
 `;
 
 export default function ProfileCard(props) {
-  console.log(props);
   const { profileData, isGuest } = props;
-  console.log(isGuest);
   return (
     <div>
       <Card

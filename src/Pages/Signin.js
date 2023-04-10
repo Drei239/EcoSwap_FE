@@ -70,8 +70,6 @@ const Signin = () => {
         navigate("/home")
       })
       .catch((error) => {
-        console.log(error);
-        console.log("trung nek")
       openNotification();
       });
       
