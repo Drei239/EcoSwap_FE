@@ -62,7 +62,6 @@ export default function NavBar() {
     useEffect(()=>{
         const id = JSON.parse(localStorage.getItem('data'));
        axios.get("http://localhost:3000/request/receive",{ headers: {"Authorization" : `Bearer ${id.token}`} }).then((data) => {
-            console.log("request",data);
             setMessage(data);
           }).catch(function (error) {
             console.log(error);

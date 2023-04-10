@@ -72,7 +72,8 @@ export default function ProfileMenu(props) {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/items/user/${uid}`).then((data) => {
+    const id = JSON.parse(localStorage.getItem('data'));
+    axios.get(`http://localhost:3000/items/user/${uid}`,{ headers: {"Authorization" : `Bearer ${id.token}`} }).then((data) => {
       if (data.data != null) {
         setItemList(data.data);
       }

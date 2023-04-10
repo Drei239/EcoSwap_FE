@@ -20,7 +20,7 @@ export default function HomePage() {
     useEffect(() => {
         console.log(localStorage.data);
         axios.get('http://localhost:3000/items/all').then(({ data }) => {
-            console.log(data);
+        
             setProducts(data);
             setLoading(false)
         });
@@ -28,7 +28,7 @@ export default function HomePage() {
 
     useEffect(() => {
         axios.get('http://localhost:3000/events/').then(({ data }) => {
-            console.log(data);
+            
             setEvents(data);
             setLoading(false);
         });

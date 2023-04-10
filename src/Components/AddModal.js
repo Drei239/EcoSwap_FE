@@ -1,10 +1,19 @@
 import React, { useContext, useState } from "react";
-import { Modal, Form, Input, Typography, Button, Upload, notification, Select } from "antd";
+import {
+  Modal,
+  Form,
+  Input,
+  Typography,
+  Button,
+  Upload,
+  notification,
+  Select,
+} from "antd";
 import { AppContext } from "../Context/AppProvider";
 import styled from "styled-components";
 import InputImage from "../Asset/InputImage.png";
 import ImgCrop from "antd-img-crop";
-
+import axios from "axios";
 
 const ModalStyled = styled(Modal)`
   .ant-modal-body {
@@ -27,32 +36,34 @@ export default function AddModal() {
   const [api, contextHolder] = notification.useNotification();
   const openNotification = () => {
     api.success({
-      message: 'Item is added successfully !'
-    })
-  }
-  const currentUserUid = JSON.parse(localStorage.getItem('data'))?._id;
+      message: "Item is added successfully !",
+    });
+  };
+  const id = JSON.parse(localStorage.getItem("data"));
   const { addModalVisible, setAddModalVisible } = useContext(AppContext);
   const [fileList, setFileList] = useState([]);
+  
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
-    console.log("fil",fileList)
   };
-  console.log("tuun")
   const onFinish = (values) => {
+    let img = [];
+    for (let i = 0; i < fileList.length; i++) {
+      img.push(fileList[i].thumbUrl);
+    }
+    const newItem = { ...values, imageList: img, itemOwner: id._id };
+    axios
+      .post("http://localhost:3000/items/create/", newItem, {
+        headers: { Authorization: `Bearer ${id.token}` },
+      })
+      .then(({ data }) => {
+        window.location.reload(true);
+        openNotification();
+      });
     setAddModalVisible(false);
-    // const imageURL = getImageURL(fileList);
-    // openNotification()
-    // imageURL.then((data) => {
-    //   addDocument('items', {
-    //     ...values,
-    //     imageList: data,
-    //     itemOwner: currentUserUid
-    //   }).then(()=>{
-    //     window.location.reload(false);
-    //   })
-      
+
     // })
-  }
+  };
   return (
     <ModalStyled
       width="60vw"
@@ -65,16 +76,18 @@ export default function AddModal() {
       }}
     >
       {contextHolder}
-      <div style={{
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-        alignContent: "center",
-        justifyContent: "center",
-        alignSelf: "center",
-        width: "100%",
-        alignItems: "center"
-      }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          alignContent: "center",
+          justifyContent: "center",
+          alignSelf: "center",
+          width: "100%",
+          alignItems: "center",
+        }}
+      >
         <ImgCrop>
           <Dragger
             style={{
@@ -148,7 +161,7 @@ export default function AddModal() {
             rules={[
               {
                 required: true,
-                message: 'Please input your item name',
+                message: "Please input your item name",
               },
             ]}
           >
@@ -157,50 +170,56 @@ export default function AddModal() {
           <Form.Item
             name="description"
             label={
-              <Typography.Text>
-                Short description for your item
-              </Typography.Text>
+              <Typography.Text>Short description for your item</Typography.Text>
             }
             rules={[
               {
                 required: true,
-                message: 'Please input description',
+                message: "Please input description",
               },
             ]}
           >
             <Input.TextArea placeholder="Description ..." />
           </Form.Item>
-          <Form.Item label={<Typography.Text>Weight</Typography.Text>}
+          <Form.Item
+            label={<Typography.Text>Weight</Typography.Text>}
             name="weight"
             rules={[
               {
                 required: true,
-                message: 'Please input weight',
+                message: "Please input weight",
               },
-            ]}>
+            ]}
+          >
             <Input placeholder="Weight of item" suffix="kg" />
           </Form.Item>
-          <Form.Item label={<Typography.Text>This item is for trade or donation</Typography.Text>}
+          <Form.Item
+            label={
+              <Typography.Text>
+                This item is for trade or donation
+              </Typography.Text>
+            }
             name="isTrade"
             rules={[
               {
                 required: true,
-                message: 'Please select option',
+                message: "Please select option",
               },
-            ]}>
-            <Select 
-              placeholder='Trade or Donate'
+            ]}
+          >
+            <Select
+              placeholder="Trade or Donate"
               options={[
                 {
                   value: true,
-                  label: 'Trade'
+                  label: "Trade",
                 },
                 {
                   value: false,
-                  label: 'Donate'
-                }
+                  label: "Donate",
+                },
               ]}
-              onChange={(value)=>{
+              onChange={(value) => {
                 console.log(value);
               }}
             />
