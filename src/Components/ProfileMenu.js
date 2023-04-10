@@ -60,7 +60,7 @@ export default function ProfileMenu(props) {
   const { uid } = useParams();
   const [page, setPage] = useState("1");
   const [itemList, setItemList] = useState([]);
-  const { addModalVisible,setAddModalVisible, setEventModalVisible, setProfileData } =
+  const { addModalVisible, setAddModalVisible, setEventModalVisible, setProfileData } =
     useContext(AppContext);
   const isAdmin = JSON.parse(localStorage.getItem("data")).isAdmin;
   const handleAdd = () => {
@@ -72,7 +72,8 @@ export default function ProfileMenu(props) {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/items/user/${uid}`).then((data) => {
+    const id = JSON.parse(localStorage.getItem('data'));
+    axios.get(`http://localhost:3000/items/user/${uid}`, { headers: { "Authorization": `Bearer ${id.token}` } }).then((data) => {
       if (data.data != null) {
         setItemList(data.data);
       }
@@ -80,7 +81,7 @@ export default function ProfileMenu(props) {
   }, [profileData]);
   return (
     <div>
-      <AddModal/>
+      <AddModal />
       <MenuStyled
         items={items}
         mode="horizontal"

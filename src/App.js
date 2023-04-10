@@ -11,23 +11,23 @@ import AddModal from "./Components/AddModal";
 
 function App() {
   return (
-    
-      <BrowserRouter>
-        <AppProvider>
-          <AuthProvider>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/home" element={<HomePage />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/user-info" element={<UserInfo />} />
-              <Route path="/signin" element={<Signin />} />
-              <Route path="/profile/:uid" element={<Profile/>} />
 
-            </Routes>
-          </AuthProvider>
-        </AppProvider>
-      </BrowserRouter>
-    
+    <BrowserRouter>
+      <AppProvider>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Signin />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/user-info" element={<UserInfo />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/profile/:uid" element={<Profile />} />
+
+          </Routes>
+        </AuthProvider>
+      </AppProvider>
+    </BrowserRouter>
+
   );
 }
 
