@@ -43,8 +43,6 @@ export default function UserInfo() {
 
   const navigate = useNavigate();
   const { user, setUser } = useContext(AuthContext);
-  console.log(user);
-
   const onFinish = async (values) => {
     if (user === null) {
       openNotification();
@@ -55,29 +53,31 @@ export default function UserInfo() {
         isAdmin: false,
       };
       setUser(newProfile);
-      const name = user.firstName + " " + user.lastName;
+      const name = newProfile.firstName + " " + newProfile.lastName;
+      
       const data = {
         name: name,
-        email: user.email,
-        password: user.password,
-        linkContact: user.facebookLink,
-        phoneNumber: user.phoneNumber,
+        email: newProfile.email,
+        password: newProfile.password,
+        linkContact: newProfile.facebookLink,
+        phoneNumber: newProfile.phoneNumber,
+        address: newProfile.address,
       };
+      console.log(user);
       await axios
         .post("http://localhost:3000/users/register", data)
         .then(function (response) {
-          if (response.status > 290) {
-            openNotification();
-          } else {
-            console.log(3)
-            localStorage.setItem("data", JSON.stringify(newProfile));
-            alert("đăng ký thành công");
-            navigate("/home");
-          }
+          
+          localStorage.setItem("data", JSON.stringify(response.data));
+          alert("đăng ký thành công");
+          console.log(localStorage.getItem("data"));
+          navigate("/home");
         })
         .catch(function (error) {
           console.log(error);
+          openNotification();
         });
+     
     }
   };
 
