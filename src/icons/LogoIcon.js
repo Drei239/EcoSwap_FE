@@ -1,6 +1,6 @@
 import React from "react";
-import logoWhite from "../asset/reCollect.png";
-import logoBlack from "../asset/reCollectBlack.png";
+import logoWhite from "../Asset/reCollect.png";
+import logoBlack from "../Asset/reCollectBlack.png";
 
 export default function LogoIcon(props) {
   const { color, style } = props;
