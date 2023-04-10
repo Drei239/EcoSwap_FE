@@ -103,7 +103,7 @@ export default function ProfileCard(props) {
               </Col>
             </Row>
           </div>
-          <div style={{ width: "70%" }}>
+          <div style={{ width: "80%" }}>
             <Typography.Title level={5} style={{ margin: 0 }}>
               About me:
             </Typography.Title>

@@ -60,7 +60,7 @@ export default function ProfileMenu(props) {
   const { uid } = useParams();
   const [page, setPage] = useState("1");
   const [itemList, setItemList] = useState([]);
-  const { addModalVisible,setAddModalVisible, setEventModalVisible, setProfileData } =
+  const { addModalVisible, setAddModalVisible, setEventModalVisible, setProfileData } =
     useContext(AppContext);
   const isAdmin = JSON.parse(localStorage.getItem("data")).isAdmin;
   const handleAdd = () => {
@@ -80,7 +80,7 @@ export default function ProfileMenu(props) {
   }, [profileData]);
   return (
     <div>
-      <AddModal/>
+      <AddModal />
       <MenuStyled
         items={items}
         mode="horizontal"

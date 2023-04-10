@@ -57,12 +57,12 @@ const Signin = () => {
   const { setUser, setProfileData, user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleEmailLogin =  (email, password) => {
+  const handleEmailLogin = (email, password) => {
     setUser({
       email: email,
       password: password,
     });
-     axios
+    axios
       .post("http://localhost:3000/users/login", user)
       .then((response) => {
         setProfileData(response.data);
@@ -70,9 +70,9 @@ const Signin = () => {
         navigate("/home")
       })
       .catch((error) => {
-      openNotification();
+     openNotification();
       });
-      
+
   };
 
   const onFinish = (values) => {
