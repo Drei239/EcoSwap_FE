@@ -11,19 +11,20 @@ const { Content } = Layout;
 
 
 export default function Profile() {
-  const {uid} = useParams();
-  const [ isGuest, setIsGuest ] = useState(false);
-  const [ profileData, setProfileData ] = useState([]);
-  useEffect(()=>{
-    axios.get(`http://localhost:3000/users/profile/${uid}`) .then(function (response) {
+  const { uid } = useParams();
+  const [isGuest, setIsGuest] = useState(false);
+  const [profileData, setProfileData] = useState([]);
+  useEffect(() => {
+    const id = JSON.parse(localStorage.getItem('data'));
+    axios.get(`http://localhost:3000/users/profile`, { headers: { "Authorization": `Bearer ${id.token}` } }).then(function (response) {
       setProfileData(response.data);
 
-      setIsGuest(uid!==JSON.parse(localStorage.getItem('data'))._id);
+      setIsGuest(uid !== JSON.parse(localStorage.getItem('data'))._id);
       console.log(isGuest);
     })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .catch(function (error) {
+        console.log(error);
+      });
 
     // getAccount('users', {
     //   fieldName: 'uid',
@@ -87,7 +88,7 @@ export default function Profile() {
                 <ProfileCard profileData={profileData} isGuest={isGuest} />
               </Col>
               <Col span={16}>
-                <ProfileMenu profileData={profileData} isGuest={isGuest}/>
+                <ProfileMenu profileData={profileData} isGuest={isGuest} />
               </Col>
             </Row>)
         }

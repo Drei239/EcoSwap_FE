@@ -54,7 +54,7 @@ export default function UserInfo() {
       };
       setUser(newProfile);
       const name = newProfile.firstName + " " + newProfile.lastName;
-      
+
       const data = {
         name: name,
         email: newProfile.email,
@@ -67,7 +67,7 @@ export default function UserInfo() {
       await axios
         .post("http://localhost:3000/users/register", data)
         .then(function (response) {
-          
+
           localStorage.setItem("data", JSON.stringify(response.data));
           alert("đăng ký thành công");
           console.log(localStorage.getItem("data"));
@@ -77,7 +77,7 @@ export default function UserInfo() {
           console.log(error);
           openNotification();
         });
-     
+
     }
   };
 
