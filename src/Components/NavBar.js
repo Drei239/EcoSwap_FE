@@ -61,13 +61,17 @@ export default function NavBar() {
   const [message, setMessage] = useState([]);
   useEffect(() => {
     const id = JSON.parse(localStorage.getItem('data'));
-    axios.get("http://localhost:3000/request/receive/", { headers: { "Authorization": `Bearer ${id.token}` } }).then((data) => {
-      setMessage(data);
-    }).catch(function (error) {
-      console.log(error);
-    });
+    axios.get("http://localhost:3000/request/receive",
+      { headers: { "Authorization": `Bearer ${id.token}` } }).
+      then((data) => {
+        setMessage(data.data);
+      }).catch(function (error) {
+        console.log(error);
+      });
   }, []);
+
   const profileData = JSON.parse(localStorage.getItem('data'));
+  console.log("sau khi dk", profileData)
   const navigate = useNavigate();
   const { width, commonBreakPoint, betweenPagesNav } = useContext(AppContext);
   const windowWidth = width;

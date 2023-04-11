@@ -19,7 +19,6 @@ export default function HomePage() {
 
     useEffect(() => {
         axios.get('http://localhost:3000/items/all').then(({ data }) => {
-        
             setProducts(data);
             setLoading(false)
         });
@@ -27,7 +26,6 @@ export default function HomePage() {
 
     useEffect(() => {
         axios.get('http://localhost:3000/events/').then(({ data }) => {
-            
             setEvents(data);
             setLoading(false);
         });
@@ -262,6 +260,7 @@ export default function HomePage() {
                                 {products && products.length > 0 &&
                                     products.slice(minValuePaginationItems, maxValuePaginationItems).map((item) => (
                                         <ProductCard
+                                            id={item._id}
                                             imageList={item.imageList}
                                             itemName={item.itemName}
                                             description={item.description}
